@@ -103,3 +103,54 @@ The trained models, label mapping, confusion matrix, and classification report w
 
 ### Technologies Used
 Python, Pandas, NumPy, Scikit-learn, XGBoost, SciPy, Matplotlib, and Seaborn.
+
+## Member 4: Backend Development and Model Integration
+
+### Objective
+To develop the backend application and integrate the trained machine learning models with the frontend, enabling users to submit text and receive classification results.
+
+### Technologies Used
+- **Python:** Backend programming.
+- **Flask:** Development of the backend web application and API routes.
+- **Joblib / Pickle:** Loading the saved machine learning models and TF-IDF vectorizer.
+- **NumPy:** Handling numerical feature arrays.
+- **Pandas:** Processing uploaded CSV files.
+- **SQLite:** Storing prediction history.
+
+### Backend Implementation
+
+1. **Flask Application Development**
+   - Developed the backend using Flask.
+   - Created API routes to handle requests from the frontend.
+   - Implemented communication between the frontend and machine learning models.
+
+2. **Machine Learning Model Integration**
+   - Loaded the trained machine learning models saved by Member 3.
+   - Integrated the TF-IDF vectorizer and Genetic Algorithm-selected feature indices provided by Member 2.
+   - Implemented the prediction pipeline to transform incoming text into the required 873 selected features.
+   - Passed the extracted features to the trained model to generate classification results.
+
+3. **Text Prediction**
+   - Implemented functionality to accept individual text inputs.
+   - Preprocessed incoming text using the training-compatible preprocessing pipeline.
+   - Returned the model's classification result through the backend API.
+
+4. **CSV Upload and Validation**
+   - Implemented CSV file upload functionality for batch text classification.
+   - Validated uploaded files to ensure they contain the required `text` column.
+   - Checked the uploaded data before processing it.
+
+5. **Database Integration**
+   - Integrated SQLite for storing prediction history.
+   - Implemented database operations to save and retrieve prediction records.
+
+### Key Backend Features
+- Individual text classification.
+- CSV upload and batch processing.
+- Input and file validation.
+- Integration of trained machine learning models.
+- REST API communication with the frontend.
+- Prediction history management using SQLite.
+
+### Outcome
+Successfully developed the backend infrastructure required to connect the machine learning pipeline with the frontend application. The backend supports individual text predictions, CSV uploads, input validation, and database-based prediction history management.
