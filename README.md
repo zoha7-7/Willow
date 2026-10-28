@@ -1,7 +1,7 @@
 ## PROJECT WORKFLOW
 This project is a part ofa Suicide detection classification pipeline
 
-## Dataset and NLP Preprocessing
+## Member 1: Dataset and NLP Preprocessing
 
 1. Objective
 The main objective of this project is to clean data , preprocess, and prepare the Suicide Detection dataset for machine learning (ML) and classification tasks. The preprocessing stage focuses on removing unwanted data, standardizing text, and converting raw social media text into a format suitable for the model traning 
