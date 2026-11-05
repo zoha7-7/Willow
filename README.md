@@ -1,7 +1,7 @@
 ## PROJECT WORKFLOW
 This project is a part ofa Suicide detection classification pipeline
 
-## Dataset and NLP Preprocessing
+## Member 1- Dataset and NLP Preprocessing
 
 1. Objective
 The main objective of this project is to clean data , preprocess, and prepare the Suicide Detection dataset for machine learning (ML) and classification tasks. The preprocessing stage focuses on removing unwanted data, standardizing text, and converting raw social media text into a format suitable for the model traning 
@@ -103,3 +103,53 @@ The trained models, label mapping, confusion matrix, and classification report w
 
 ### Technologies Used
 Python, Pandas, NumPy, Scikit-learn, XGBoost, SciPy, Matplotlib, and Seaborn.
+
+### Member 4: Backend Development and Integration
+
+**Objective:** Integrate the trained machine-learning model into the Elaria application using Flask.
+
+**Responsibilities:**
+- Developed the Flask backend and API endpoints.
+- Integrated the XGBoost model, TF-IDF vectorizer, and preprocessing pipeline.
+- Implemented single-text prediction and CSV batch prediction.
+- Integrated SQLite for prediction-history and statistics management.
+- Implemented input validation and error handling.
+- Prepared API documentation and frontend integration support.
+
+**Backend Workflow:**
+
+```text
+Frontend Input
+      ↓
+Flask API
+      ↓
+Input Validation
+      ↓
+Text Preprocessing
+      ↓
+TF-IDF Vectorization
+      ↓
+XGBoost Prediction
+      ↓
+Label Mapping
+      ↓
+SQLite Database
+      ↓
+Prediction Response
+```
+
+**API Endpoints:**
+
+| Method | Endpoint | Function |
+|---|---|---|
+| GET | `/health` | Backend health check |
+| POST | `/predict` | Single-text prediction |
+| POST | `/predict-csv` | CSV batch prediction |
+| GET | `/history` | Prediction history |
+| GET | `/statistics` | Prediction statistics |
+
+**Technologies:** Python, Flask, SQLite, Pandas, Scikit-learn, XGBoost, Joblib.
+
+**Testing:** Verified model loading, API functionality, single and batch predictions, input validation, and database operations through local testing.
+
+**Main Deliverable:** A Flask-based backend connecting the trained ML model with the Elaria application.
