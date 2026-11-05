@@ -1,69 +1,44 @@
-# Willow – Member 5 frontend
+# Willow — Member 5
 
-This is a React + Vite frontend based on the Willow reference screenshot. It includes:
-- Willow landing page with an animated illustrated hero and an Enter Willow link to the interface
-- Text prediction form
-- CSV bulk prediction (one API request per non-empty row)
-- Downloadable prediction CSV
-- Latest prediction and session history
-- Responsible Use and supportive daily thought
-- Responsive layout and light/dark theme toggle
+Willow is a compassionate, AI-assisted interface for exploring text that may indicate suicidal ideation. i am responsible for developing the landing page and interactive user interface and connects backend.
 
-The landing page opens first. Select **Enter Willow** to use the prediction interface; use the home button in the interface header to return to the landing page.
+## Languages and tools
 
-## 1. Start the frontend
+- **JavaScript (React JSX)** — interface and application logic
+- **CSS** — responsive styling, light/dark themes, and landing-page visuals
+- **HTML** — Vite app entry point
+- **Python (Flask)** — backend API integration example
+- **Vite** — local development and production builds
 
-Open PowerShell in this `willow_member5_code` folder. If PowerShell starts in the workspace root, first run `cd .\willow_member5_code`.
+## Pages and features
+
+- **Landing page:** illustrated hero and an **Enter Willow** button.
+- **Prediction interface:** enter text (up to 1,000 characters), submit it for prediction, and view the latest result, confidence, and recent session history.
+- **CSV tools:** upload or drag in a CSV, select its text column, process rows, and download the results.
+- **Interface controls:** responsive navigation, light/dark mode, return-to-landing control, supportive daily messages, and responsible-use guidance.
+
+## Run locally
+
+From the project folder, install dependencies and start the frontend:
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Open the URL Vite prints (normally `http://localhost:8080`).
-
-Run the interface checks and production build with:
+Open the URL Vite prints (usually `http://localhost:8080`). Run checks and create a production build with:
 
 ```powershell
 npm test
 npm run build
 ```
 
-## 2. Connect the Flask backend
+## Backend connection
 
-The frontend expects this endpoint:
+Start a Flask backend separately on `127.0.0.1:5000`. The frontend sends **POST `/api/predict`** with `{"text":"..."}` and expects a JSON response containing `prediction`. `confidence`, `model_prediction`, and `prediction_source` are optional.
 
-**POST** `/api/predict`
+Vite proxies `/api` requests to the Flask server. The project includes a backend route contract example, but does not include the Flask app or trained model.
 
-Request:
-```json
-{"text": "text to classify"}
-```
+## Responsible use
 
-Response:
-```json
-{
-  "prediction": "Suicide",
-  "confidence": 0.53,
-  "model_prediction": "Non-suicide",
-  "prediction_source": "explicit_language"
-}
-```
-
-Only `prediction` is required. `confidence`, `model_prediction`, and `prediction_source` are optional; `prediction_source` may be `explicit_language` when the backend applies an explicit-language flag. The interface displays both the flagged result and underlying model label in that case, and includes the model label/source in downloaded CSVs. Vite proxies `/api` to `http://127.0.0.1:5000`.
-
-## 3. Connect your existing model files
-
-Start the Flask backend in a second terminal; the frontend alone cannot make model predictions. The backend must listen on `127.0.0.1:5000` and provide `POST /api/predict`. The frontend does not load model files directly.
-
-`BACKEND_INTEGRATION_EXAMPLE.py` is only a route contract example. No Flask app, model handler, or trained model artifacts are included in this folder, so connect your actual backend and its new model there rather than guessing a prediction function here.
-
-## 4. CSV format
-
-CSV must have a header row. A text-like header such as `text`, `post`, `thought`, `content`, or `message` is selected automatically when possible. You can change the text column after upload. Every non-empty row is sent to `/api/predict`; results are appended as `Willow_Prediction`, `Willow_Model_Prediction`, `Willow_Prediction_Source`, and `Willow_Confidence`.
-
-For large CSV files, consider implementing a batch endpoint in Flask rather than sending one request per row.
-
-## 5. Important safety note
-
-This is an educational classification interface, not a clinical screening or diagnostic tool. Model output can be wrong and must not be used as the sole basis for assessing anyone's safety. If someone may be in immediate danger, contact emergency services or a trusted person. In India, emergency assistance is available at 112; Tele-MANAS can be reached at 14416.
+Willow is an educational support tool—not a diagnosis or substitute for professional care. Predictions can be wrong and should not be the sole basis for safety decisions. If someone may be in immediate danger, contact local emergency services or a trusted person.
